@@ -149,14 +149,20 @@
         function gerarRespostaIA(pergunta) {
             const p = pergunta.toLowerCase();
             
-            if (p.includes("olá") || p.includes("oi")) {
-                return "Olá! É um prazer participar desta apresentação do técnico em desenvolvimento de sistemas!";
-            } else if (p.includes("como você funciona") || p.includes("ia")) {
-                return "Eu sou uma simulação baseada em regras e lógica JavaScript, criada para demonstrar o conceito de interfaces conversacionais sem precisar de uma API externa pesada!";
-            } else if (p.includes("sistema") || p.includes("projeto")) {
-                return "O desenvolvimento de sistemas envolve planejamento, código limpo, testes e muita dedicação, assim como este projeto que você está apresentando!";
+            if (p.includes("java") && !p.includes("javascript")) {
+                return "Java é uma linguagem de programação orientada a objetos, muito utilizada no desenvolvimento de aplicações corporativas, sistemas Android e back-end robustos.";
+            } else if (p.includes("javascript") || p.includes("js")) {
+                return "JavaScript é a linguagem de programação que dá interatividade às páginas web (como este chat que criámos agora mesmo!).";
+            } else if (p.includes("einstein") || p.includes("albert")) {
+                return "Albert Einstein foi um físico teórico alemão, criador da teoria da relatividade geral, uma das pedras angulares da física moderna.";
+            } else if (p.includes("inteligência artificial") || p.includes("ia")) {
+                return "A Inteligência Artificial é um ramo da ciência da computação que visa criar sistemas capazes de simular a inteligência humana, aprender e resolver problemas.";
+            } else if (p.includes("técnico") || p.includes("desenvolvimento de sistemas")) {
+                return "O curso Técnico em Desenvolvimento de Sistemas capacita os alunos para criar software, estruturar bases de dados e desenvolver soluções tecnológicas como esta!";
+            } else if (p.includes("olá") || p.includes("oi")) {
+                return "Olá! Sou o teu assistente virtual para a apresentação. Pergunta-me o que quiseres, como sobre programação ou ciência!";
             } else {
-                return `Entendi sua pergunta sobre "${pergunta}". Em um modelo de IA real, esta entrada passaria por redes neurais e processamento de linguagem natural (PLN) para gerar a resposta ideal.`;
+                return `Boa pergunta sobre "${pergunta}"! Num sistema de IA real, esta questão seria processada por modelos avançados de linguagem para gerar uma resposta detalhada. Para esta apresentação, estou configurado para responder a vários tópicos!`;
             }
         }
     </script>
