@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de IA - Apresentação</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            background: #1e293b;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+        .chat-header {
+            background: #0ea5e9;
+            padding: 16px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #fff;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .message {
+            padding: 10px 14px;
+            border-radius: 8px;
+            max-width: 80%;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: #3b82f6;
+            color: white;
+            align-self: flex-end;
+        }
+        .ai-message {
+            background: #334155;
+            color: #e2e8f0;
+            align-self: flex-start;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 12px;
+            background: #0f172a;
+            border-top: 1px solid #334155;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: white;
+            outline: none;
+            font-size: 1rem;
+        }
+        input:focus {
+            border-color: #0ea5e9;
+        }
+        button {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            margin-left: 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">🤖 Simulador de IA Escolar</div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message ai-message">Olá! Sou o seu simulador de IA para a apresentação. Como posso te ajudar hoje?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Digite sua pergunta aqui..." autofocus>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const inputField = document.getElementById("userInput");
+        const messagesContainer = document.getElementById("chatMessages");
+
+        // Permitir envio com a tecla Enter
+        inputField.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const text = inputField.value.trim();
+            if (text === "") return;
+
+            // Adiciona mensagem do usuário
+            appendMessage(text, "user-message");
+            inputField.value = "";
+
+            // Simula o tempo de "pensar" da IA
+            setTimeout(() => {
+                const resposta = gerarRespostaIA(text);
+                appendMessage(resposta, "ai-message");
+            }, 800);
+        }
+
+        function appendMessage(text, className) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${className}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function gerarRespostaIA(pergunta) {
+            const p = pergunta.toLowerCase();
+            
+            if (p.includes("olá") || p.includes("oi")) {
+                return "Olá! É um prazer participar desta apresentação do técnico em desenvolvimento de sistemas!";
+            } else if (p.includes("como você funciona") || p.includes("ia")) {
+                return "Eu sou uma simulação baseada em regras e lógica JavaScript, criada para demonstrar o conceito de interfaces conversacionais sem precisar de uma API externa pesada!";
+            } else if (p.includes("sistema") || p.includes("projeto")) {
+                return "O desenvolvimento de sistemas envolve planejamento, código limpo, testes e muita dedicação, assim como este projeto que você está apresentando!";
+            } else {
+                return `Entendi sua pergunta sobre "${pergunta}". Em um modelo de IA real, esta entrada passaria por redes neurais e processamento de linguagem natural (PLN) para gerar a resposta ideal.`;
+            }
+        }
+    </script>
+</body>
+</html>
